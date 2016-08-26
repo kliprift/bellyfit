@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'facilities/index'
+
+  get 'facilities/show'
+
+  get 'facilities/new'
+
+  get 'facilities/create'
+
+  get 'facilities/edit'
+
+  get 'facilities/update'
+
   root 'welcome#index'
 
   #*** rails g clearance:routes show all these default Clearance routes
