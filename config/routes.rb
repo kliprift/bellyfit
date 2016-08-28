@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
 
   #*** rails g clearance:routes show all these default Clearance routes
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
@@ -10,14 +9,21 @@ Rails.application.routes.draw do
       only: [:create, :edit, :update]
   end
 
+  resources :users, only: [:show, :edit, :update] do 
+    resources :teams, only: [:new, :create, :edit, :update, :show, :destroy]
+    resources :user_teams, only: [:new, :create, :show, :destroy]
+  end
+
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "clearance/users#new", as: "sign_up"
   #*** end of default routes of Clearance
 
-  resources :users, controller: "users", only: :show
+  # resources :users, controller: "users", only: :show
+  
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 
+  root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
