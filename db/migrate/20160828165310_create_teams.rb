@@ -5,8 +5,6 @@ class CreateTeams < ActiveRecord::Migration
       t.string :location
       t.string :description
       t.references :user, index: true, foreign_key: true
-      t.references :booking, index: true, foreign_key: true
-
       t.timestamps null: false
     end
   end

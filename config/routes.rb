@@ -1,26 +1,29 @@
 Rails.application.routes.draw do
-  get 'facilities/index'
+ 
+ #*** rails g clearance:routes show all these default Clearance routes
+ resources :passwords, controller: "clearance/passwords", only: [:create, :new]
+ resource :session, controller: "clearance/sessions", only: [:create]
+ resources :users, controller: "clearance/users", only: [:create] do
+   resource :password,
+     controller: "clearance/passwords",
+     only: [:create, :edit, :update]
+ end
 
-  get 'facilities/show'
+ root 'welcome#index'
 
-  get 'facilities/new'
 
-  get 'facilities/create'
-
-  get 'facilities/edit'
-
-  get 'facilities/update'
-
-  root 'welcome#index'
-
-  #*** rails g clearance:routes show all these default Clearance routes
-  resources :passwords, controller: "clearance/passwords", only: [:create, :new]
-  resource :session, controller: "clearance/sessions", only: [:create]
-  resources :users, controller: "clearance/users", only: [:create] do
-    resource :password,
-      controller: "clearance/passwords",
-      only: [:create, :edit, :update]
+ resources :users do
+  resources :facilities do
+    resources :bookings, only: [:new, :show, :create, :edit]
   end
+end
+
+
+ resources :users, controller: "users", only: :show
+ get "/auth/:provider/callback" => "sessions#create_from_omniauth"
+
+ # The priority is based upon order of creation: first created -> highest priority.
+ # See how all your routes lay out with "rake routes".
 
   resources :users, only: [:show, :edit, :update] do 
     resources :teams, only: [:new, :create, :edit, :update, :show, :destroy] 
@@ -45,50 +48,56 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+ # You can have the root of your site routed with "root"
+ # root 'welcome#index'
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+ # Example of regular route:
+ #   get 'products/:id' => 'catalog#view'
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+ # Example of named route that can be invoked with purchase_url(id: product.id)
+ #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+ # Example resource route (maps HTTP verbs to controller actions automatically):
+ #   resources :products
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+ # Example resource route with options:
+ #   resources :products do
+ #     member do
+ #       get 'short'
+ #       post 'toggle'
+ #     end
+ #
+ #     collection do
+ #       get 'sold'
+ #     end
+ #   end
 
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+ # Example resource route with sub-resources:
+ #   resources :products do
+ #     resources :comments, :sales
+ #     resource :seller
+ #   end
 
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
+ # Example resource route with more complex sub-resources:
+ #   resources :products do
+ #     resources :comments
+ #     resources :sales do
+ #       get 'recent', on: :collection
+ #     end
+ #   end
 
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
+ # Example resource route with concerns:
+ #   concern :toggleable do
+ #     post 'toggle'
+ #   end
+ #   resources :posts, concerns: :toggleable
+ #   resources :photos, concerns: :toggleable
+ # Example resource route within a namespace:
+ #   namespace :admin do
+ #     # Directs /admin/products/* to Admin::ProductsController
+ #     # (app/controllers/admin/products_controller.rb)
+ #     resources :products
+ #   end
 
   # Example resource route within a namespace:
   #   namespace :admin do
@@ -96,6 +105,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
-
 end
+

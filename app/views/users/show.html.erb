@@ -9,7 +9,6 @@
     <%= link_to "let's create a team!", new_user_team_path(current_user.id) %><br>
     <%= "Below is your public information:" %><br>
     <%= "Name: #{current_user.name}" if current_user.name != nil %><br>
-    <%= "Age: #{current_user.age}" if current_user.age != nil %><br>
     <%= "Gender: #{current_user.gender}" if current_user.gender != nil %><br>
     <%= "Profile Description: #{current_user.description}" if current_user.description != nil%><br>
     <%= "Contact: #{current_user.contact_detail}" if current_user.contact_detail != nil %><br>
