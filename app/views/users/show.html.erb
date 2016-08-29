@@ -1,2 +1,37 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div id="clearance" class="sign-up">
+  <h2> Profile Page </h2>
+
+  <% if current_user.name.nil? %>
+    Whats your name btw? Please update us more basic details of yours. Go to <%= link_to "update profile", edit_user_path(current_user.id) %>.<br>
+    <%= "Your email address is: " + current_user.email %><br>
+  <% else %>
+    <%= "Hi, " + current_user.name + "! We appreciate every moment you have with us :) " %><br>
+    <%= link_to "let's create a team!", new_user_team_path(current_user.id) %><br>
+    <%= "Below is your public information:" %><br>
+    <%= "Name: #{current_user.name}" if current_user.name != nil %><br>
+    <%= "Gender: #{current_user.gender}" if current_user.gender != nil %><br>
+    <%= "Profile Description: #{current_user.description}" if current_user.description != nil%><br>
+    <%= "Contact: #{current_user.contact_detail}" if current_user.contact_detail != nil %><br>
+    <%= "Location: #{current_user.location_description}" if current_user.location_description != nil %><br>
+    <%= link_to "update profile", edit_user_path(current_user.id) %><br>
+  <% end %>
+
+
+  <% bookings = current_user.bookings %>
+ 	<% facilities = current_user.facilities %>
+  <% if bookings.count != 0 %>
+
+  	<% "You have #{bookings.count} bookings booked through our sites. ***To put in view buttom***" %><br>
+
+		<% if facilities.count != 0 %>
+
+	  	<% "You have #{facilities.count} facitilites listed on our sites. ***To put in view buttom***" %><br>
+	  <% end %>
+	  
+  <% else %>
+
+  	<%= "You have #{facilities.count} facitilites listed on our sites. ***To put in become a host buttom***" %><br>
+  	<%= "You have #{bookings.count} bookings booked through our sites. ***To put in make a booking buttom***" %><br>
+
+  <% end %>
+</div>

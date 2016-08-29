@@ -3,7 +3,10 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true
   has_many :authentications, :dependent => :destroy
+  has_many :facilities
   has_many :bookings
+  has_many :user_teams
+  has_many :teams
 
   def self.create_with_auth_and_hash(authentication,auth_hash)
     create! do |u|
