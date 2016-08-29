@@ -1,5 +1,4 @@
 class Facility < ActiveRecord::Base
-	has_many :bookings, presence: true
-	validates :user, presence: true
-	validates :date, presence: true
+	has_many :bookings
+	validates :user_id, presence: true
 end

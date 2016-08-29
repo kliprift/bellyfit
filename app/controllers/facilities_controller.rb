@@ -2,11 +2,11 @@ class FacilitiesController < ApplicationController
   before_action :set_facility
   
   def index
-    @facilities = current_user.rooms
+    @facilities = current_user.facilities
   end
 
   def show
-    @room = Room.find(params[:id])
+    @facility = Facility.find(params[:id])
   end
 
   def new

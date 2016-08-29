@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   resources :users, controller: "users", only: :show
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 
-  resources : conversations, only: [:index, :create] do
+  resources :conversations, only: [:index, :create] do
     resources :messages, only: [:index, :create]
   end
 
