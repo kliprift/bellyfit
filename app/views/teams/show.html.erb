@@ -1,2 +1,18 @@
-<h1>Teams#show</h1>
-<p>Find me in app/views/teams/show.html.erb</p>
+<h2><%= "Team #{@team.name}" %></h2>
+
+<% if @team.user_id == current_user.id %>
+	<%= "#{@team.user.name}, you are the admin of this group." %>
+	<%= link_to "Add Team Members!", :controller => "user_teams", :action => "new", :team_id => @team.id %><br>
+	<%= "Below are your team members:" %><br>
+	<%= "#{@team.user.name} #{@team.user.email} - admin" %><br>
+	<% @user_teams = UserTeam.where(team_id: @team.id) %>
+	<% @user_teams.each do |ut| %>
+		<%= ut.user.name if ut.user.name != nil %>
+		<%= ut.user.email %>
+		<%= link_to "Kick this fucker out of my team!", delete_team_member_path(@team.id, ut.id), method: :delete %><br>
+	<% end %>
+<% end %>
+
+<%= "Location: #{@team.location}" if @team.location != nil %><br>
+<%= "Desctiption: #{@team.description}" if @team.description != nil %><br>
+

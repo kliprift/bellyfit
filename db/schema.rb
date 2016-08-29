@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160828165722) do
+ActiveRecord::Schema.define(version: 20160829022838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,12 +58,10 @@ ActiveRecord::Schema.define(version: 20160828165722) do
     t.string   "location"
     t.string   "description"
     t.integer  "user_id"
-    t.integer  "booking_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "teams", ["booking_id"], name: "index_teams_on_booking_id", using: :btree
   add_index "teams", ["user_id"], name: "index_teams_on_user_id", using: :btree
 
   create_table "user_teams", force: :cascade do |t|
@@ -97,7 +95,6 @@ ActiveRecord::Schema.define(version: 20160828165722) do
   add_foreign_key "bookings", "facilities"
   add_foreign_key "bookings", "users"
   add_foreign_key "facilities", "users"
-  add_foreign_key "teams", "bookings"
   add_foreign_key "teams", "users"
   add_foreign_key "user_teams", "teams"
   add_foreign_key "user_teams", "users"

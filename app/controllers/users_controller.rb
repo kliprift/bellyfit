@@ -1,11 +1,5 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:edit, :update]
-  
-  def show
-  end
-
-  def edit
-  end
 
   def update
   	if @user.update_attributes(user_params)

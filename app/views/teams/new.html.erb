@@ -1,2 +1,6 @@
-<h1>Teams#new</h1>
-<p>Find me in app/views/teams/new.html.erb</p>
+<h2> Create New Team </h2>
+
+<%= form_for @team, url: user_teams_path(current_user) do |form| %>
+  <%= render partial: '/teams/form', object: form %> 
+<% end %>
+

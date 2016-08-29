@@ -10,9 +10,12 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show, :edit, :update] do 
-    resources :teams, only: [:new, :create, :edit, :update, :show, :destroy]
-    resources :user_teams, only: [:new, :create, :show, :destroy]
+    resources :teams, only: [:new, :create, :edit, :update, :show, :destroy] 
   end
+
+  get "/teams/:team_id/user_teams/new" => 'user_teams#new'
+  post "/teams/:team_id/user_teams" => 'user_teams#create', as: "add_team_members"
+  delete "/team/:team_id/user_teams/:id", to: 'user_teams#destroy', as: "delete_team_member"
 
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"

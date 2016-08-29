@@ -1,2 +1,20 @@
-<h1>UserTeams#new</h1>
-<p>Find me in app/views/user_teams/new.html.erb</p>
+<h2><%= "Add new members to Team #{@user_team.team.name}" %></h2>
+Search the user either by name or email address.
+
+<%= form_for :user_teams, url: add_team_members_path(@team) do |form| %>
+  <div class="text-field">
+	  <%= form.label :name %>
+	  <%= form.text_field :name %>
+	</div>
+
+	<div class="text-field">
+	  <%= form.label :email %>
+	  <%= form.text_field :email, type: 'email' %>
+	</div>
+
+	<div class="submit-field">
+	  <%= form.submit %>
+	</div>
+<% end %>
+
+
