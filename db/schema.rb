@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20160828223914) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.datetime "end_date"
+    t.integer  "price"
+    t.integer  "total"
   end
 
   add_index "bookings", ["facility_id"], name: "index_bookings_on_facility_id", using: :btree

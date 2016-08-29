@@ -1,7 +1,6 @@
 class BookingsController < ApplicationController
   before_action :require_login
-  before_action :find_user, only: [:show, :edit, :update, :destroy]
- 
+  before_action :find_user, only: [:show, :edit, :update]
 
   def index
   end
@@ -23,18 +22,18 @@ class BookingsController < ApplicationController
   end
 
   def edit
-  end
-
-  def update
     if current_user.bookings.update(booking_params)
       redirect_to @booking
     else
       render 'edit'
   end
 
+  def update
+  end
+
   def destroy
-    @booking.destroy
-    redirect_to user_team_bookings_path
+    current_user.bookings.destroy
+    redirect_to user_bookings_path
   end
 
   private 
@@ -44,7 +43,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:date, :private, :title, :notes, :facility)
+    params.require(:booking).permit(:start_date, :end_date, :price, :total, :private, :title, :notes, :facility)
   end
 
 end
