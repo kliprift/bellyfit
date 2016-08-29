@@ -74,13 +74,40 @@ ActiveRecord::Schema.define(version: 20160829064101) do
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
+  create_table "teams", force: :cascade do |t|
+    t.string   "name"
+    t.string   "location"
+    t.string   "description"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "teams", ["user_id"], name: "index_teams_on_user_id", using: :btree
+
+  create_table "user_teams", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_teams", ["team_id"], name: "index_user_teams_on_team_id", using: :btree
+  add_index "user_teams", ["user_id"], name: "index_user_teams_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.string   "email",                          null: false
-    t.string   "encrypted_password", limit: 128, null: false
-    t.string   "confirmation_token", limit: 128
-    t.string   "remember_token",     limit: 128, null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "email",                            null: false
+    t.string   "encrypted_password",   limit: 128, null: false
+    t.string   "confirmation_token",   limit: 128
+    t.string   "remember_token",       limit: 128, null: false
+    t.string   "name"
+    t.integer  "age"
+    t.string   "gender"
+    t.string   "description"
+    t.string   "contact_detail"
+    t.string   "location_description"
     t.string   "location_name"
     t.integer  "price"
     t.integer  "ratings"
@@ -94,4 +121,7 @@ ActiveRecord::Schema.define(version: 20160829064101) do
   add_foreign_key "facilities", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
+  add_foreign_key "teams", "users"
+  add_foreign_key "user_teams", "teams"
+  add_foreign_key "user_teams", "users"
 end

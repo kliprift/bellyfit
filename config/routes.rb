@@ -22,19 +22,26 @@ Rails.application.routes.draw do
       only: [:create, :edit, :update]
   end
 
+  resources :users, only: [:show, :edit, :update] do 
+    resources :teams, only: [:new, :create, :edit, :update, :show, :destroy] 
+  end
+
+  get "/teams/:team_id/user_teams/new" => 'user_teams#new'
+  post "/teams/:team_id/user_teams" => 'user_teams#create', as: "add_team_members"
+  delete "/team/:team_id/user_teams/:id", to: 'user_teams#destroy', as: "delete_team_member"
+
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "clearance/users#new", as: "sign_up"
   #*** end of default routes of Clearance
 
-  resources :users, controller: "users", only: :show
+  # resources :users, controller: "users", only: :show
+  
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 
   resources :conversations, only: [:index, :create] do
     resources :messages, only: [:index, :create]
   end
-
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

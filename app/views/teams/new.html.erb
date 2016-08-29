@@ -1,0 +1,6 @@
+<h2> Create New Team </h2>
+
+<%= form_for @team, url: user_teams_path(current_user) do |form| %>
+  <%= render partial: '/teams/form', object: form %> 
+<% end %>
+
