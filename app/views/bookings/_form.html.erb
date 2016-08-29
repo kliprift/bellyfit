@@ -1,0 +1,48 @@
+<%= form_for([@facility, @facility.bookings.new]) do |f| %>
+
+<div class="row">
+	<div class="col-md-6">
+		<%= f.label :start_date, 'From' %>
+		<%= f.text_field :start_date, readonly: 'true', placeholder: 'Start Date' %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<%= f.label :end_date, 'To' %>
+		<%= f.text_field :end_date, readonly: 'true', placeholder: 'End Date' %>
+	</div>
+</div>
+	
+<div class="row">
+	<div class="col-md-6">
+		<%= f.label :title, 'Title' %>
+		<%= f.text_field :title, readonly: 'true', placeholder: 'Title' %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<%= f.label :notes, 'Notes' %>
+		<%= f.text_field :notes, readonly: 'true', placeholder: 'Notes' %>
+	</div>
+</div>
+
+	<%= f.hidden_field :facility_id %>
+	<%= f.hidden_field :price_per_hour %>
+
+<div class="row">
+	<div class="col-md-6">
+		<%= f.label :private, 'Tick for Private Event' %>
+		<%= f.check_box :private %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<%= f.submit "Book" %>
+	</div>
+</div>
+
+<% end %>
+

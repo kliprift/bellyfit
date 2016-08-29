@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
  resources :users do
   resources :facilities do
-    resources :bookings, only: [:create]
+    resources :bookings, only: [:new, :show, :create, :edit]
   end
 end
 

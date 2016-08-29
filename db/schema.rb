@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20160828223914) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.datetime "end_date"
-    t.integer  "price"
     t.integer  "total"
   end
 
