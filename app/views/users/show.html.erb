@@ -6,7 +6,7 @@
     <%= "Your email address is: " + current_user.email %><br>
   <% else %>
     <%= "Hi, " + current_user.name + "! We appreciate every moment you have with us :) " %><br>
-
+    <%= image_tag (current_user.avatars[0].thumb.url) %><br>
     <% if current_user.teams.nil? %>
 
       <%= link_to "let's create a team!", new_user_team_path(current_user.id) %><br>

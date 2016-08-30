@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  mount_uploaders :avatars, AvatarUploader
   include Clearance::User
 
   validates :email, uniqueness: true
