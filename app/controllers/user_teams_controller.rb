@@ -1,4 +1,5 @@
 class UserTeamsController < ApplicationController
+  before_action :set_user_team, only: [:destroy]
   def new
   	# byebug
   	@team = Team.find(params[:team_id])
@@ -22,6 +23,14 @@ class UserTeamsController < ApplicationController
   end
 
   def destroy
-    byebug
+    @user_team.destroy
+    @team = Team.find(params[:team_id])
+    redirect_to user_team_path(current_user.id, @team.id)
+  end
+
+  private
+  def set_user_team
+
+    @user_team = UserTeam.find(params[:id])
   end
 end

@@ -6,7 +6,36 @@
     <%= "Your email address is: " + current_user.email %><br>
   <% else %>
     <%= "Hi, " + current_user.name + "! We appreciate every moment you have with us :) " %><br>
-    <%= link_to "let's create a team!", new_user_team_path(current_user.id) %><br>
+
+    <% if current_user.teams.nil? %>
+
+      <%= link_to "let's create a team!", new_user_team_path(current_user.id) %><br>
+
+    <% else %>
+      <% teams = Team.where(user_id: current_user.id)
+      user_teams = UserTeam.where(user_id: current_user.id) %>
+
+      <% if teams.count != 0 %>
+        <%= "Teams where you are an admin:" %><br>
+        <% teams.each_with_index do |t, index| %>
+          <%= "#{index+1}.. #{t.name}"%>
+          <%= link_to "view", user_team_path(current_user, t) %><br>
+        <% end %>
+      <% end %>
+
+      <% if user_teams.count != 0 %>
+        <%= "Teams you are a member:" %><br>
+        <% user_teams.each_with_index do |ut, index|%>
+          <%= "#{index+1}.. #{ut.team.name}" %>
+          <%= link_to "view", user_team_path(current_user, ut.team) %><br>
+        <% end %>
+
+      <% end %>
+
+      <%= link_to "let's create more kick-ass teamsss!", new_user_team_path(current_user.id) %><br>
+
+    <% end %>
+
     <%= "Below is your public information:" %><br>
     <%= "Name: #{current_user.name}" if current_user.name != nil %><br>
     <%= "Gender: #{current_user.gender}" if current_user.gender != nil %><br>
