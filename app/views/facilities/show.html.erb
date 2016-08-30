@@ -64,7 +64,9 @@
 							</div>
 						</div>
 					</div>
-					<%= image_tag (@facility.avatars[0].large.url) %>
+					
+						<%= image_tag (@facility.avatars[0].thumb.url) if @facility.avatars[0] != nil %>
+					
 				</div>
 			</div>
 		</div>	

@@ -17,7 +17,7 @@ class FacilitiesController < ApplicationController
     @facility = current_user.facilities.new(facility_params)
 
     if @facility.save
-      redirect_to user_facility_path(current_user, @facility), notice: "Facility is successfully created"
+      redirect_to user_facility_path(current_user.id, @facility.id), notice: "Facility is successfully created"
     else
       render :new
     end
@@ -49,7 +49,7 @@ class FacilitiesController < ApplicationController
   private
 
     def set_facility
-      @facility = Facility.find(current_user.id)
+      @facility = Facility.find(params[:id])
     end
 
     def facility_params

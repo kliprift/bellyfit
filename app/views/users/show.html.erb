@@ -54,12 +54,13 @@
 
 		<% if facilities.count != 0 %>
 
-	  	<% "You have #{facilities.count} facitilites listed on our sites. ***To put in view buttom***" %><br>
+	  	<% "You have #{facilities.count} facilities listed on our sites. ***To put in view buttom***" %><br>
 	  <% end %>
 	  
   <% else %>
 
-  	<%= "You have #{facilities.count} facitilites listed on our sites. ***To put in become a host buttom***" %><br>
+  	<%= "You have #{facilities.count} facitilites listed on our sites." %>
+    <%= link_to "Your Facilities", user_facilities_path(current_user) %><br>
   	<%= "You have #{bookings.count} bookings booked through our sites. ***To put in make a booking buttom***" %><br>
 
   <% end %>
