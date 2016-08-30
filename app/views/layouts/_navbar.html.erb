@@ -3,6 +3,8 @@
   <% if signed_in? -%>
     <%= link_to "#{current_user.email}", user_path(current_user.id) %>
     <%= link_to t(".sign_out"), sign_out_path, method: :delete %>
+    <%= link_to t(".create_facility"), new_user_facility_path(current_user.id) %>
+
   <% else -%>
     <%= link_to t(".sign_up"), sign_up_path %>
     <%= link_to t(".sign_in"), sign_in_path %>

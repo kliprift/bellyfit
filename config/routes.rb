@@ -46,7 +46,6 @@ end
     resources :messages, only: [:index, :create]
   end
 
-  resources :facilities
   resources :photos
 
   # The priority is based upon order of creation: first created -> highest priority.

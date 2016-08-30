@@ -6,7 +6,7 @@ class FacilitiesController < ApplicationController
   end
 
   def show
-    @photos = @facility.photos
+
   end
 
   def new
@@ -14,17 +14,10 @@ class FacilitiesController < ApplicationController
   end
 
   def create
-    @facility = current_user.facilities.build(facility_params)
+    @facility = current_user.facilities.new(facility_params)
 
     if @facility.save
-      if params[:images]
-        params[:images].each do |image|
-          @facility.photo.create(image: image)
-        end
-      end
-
-      @photos = @facility.photos
-      redirect_to edit_facility_path(@facility), notice: "Facility is successfully created"
+      redirect_to user_facility_path(current_user, @facility), notice: "Facility is successfully created"
     else
       render :new
     end
@@ -60,7 +53,7 @@ class FacilitiesController < ApplicationController
     end
 
     def facility_params
-      params.require(:facility).permit(:street, :city, :state, :type, :start_time, :end_time, :description, :location_name, :ratings, :price_per_hour)
+      params.require(:facility).permit(:street, :city, :state, :sport, :start_time, :end_time, :description, :location_name, :ratings, :price_per_hour, {avatars: []})
     end
 end
 

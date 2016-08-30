@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830041637) do
+ActiveRecord::Schema.define(version: 20160830093349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20160830041637) do
     t.string   "street"
     t.string   "city"
     t.string   "state"
-    t.string   "type"
     t.time     "start_time"
     t.time     "end_time"
     t.string   "description"
@@ -62,6 +61,8 @@ ActiveRecord::Schema.define(version: 20160830041637) do
     t.integer  "user_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "sport"
+    t.json     "avatars"
   end
 
   add_index "facilities", ["user_id"], name: "index_facilities_on_user_id", using: :btree
