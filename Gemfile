@@ -28,6 +28,11 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'clearance'
 gem 'figaro'
+gem 'toastr-rails'
+gem 'paperclip'
+gem 'geocoder'
+gem 'private_pub'
+gem 'thin'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -45,6 +45,10 @@ end
   resources :conversations, only: [:index, :create] do
     resources :messages, only: [:index, :create]
   end
+
+  resources :facilities
+  resources :photos
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

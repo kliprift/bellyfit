@@ -1,0 +1,124 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Create your facility locations
+	</div>
+	<div class="panel-body">
+		<div class="container">
+			
+			<%= form_for @facility, :html => { multipart: true } do |f| %>
+
+				<div class="row">
+					<div class="col-md-4 select">
+						<div class="form-group">
+							<label>Facility Type</label>
+							<%= f.select :type, [["Futsal","Futsal"], ["Badminton","Badminton"], ["Basketball","Basketball"]], id: "type", prompt: "Please select", class: "form-control" %>
+						</div>
+					</div>
+
+					<div class="col-md-4 select">
+						<div class="form-group">
+							<label>City</label>
+							<%= f.select :state, [["Petaling Jaya","Petaling Jaya"], ["KL","KL"], ["Klang","Klang"]],prompt: "Please select", class: "form-control" %>
+						</div>
+					</div>
+
+					<div class="col-md-4 select">
+						<div class="form-group">
+							<label>Number of Hours</label>
+							<%= f.select :price_per_hour, [["1",1], ["2",2], ["3",3], ["4",4], ["5",5], ["6+",6]], prompt: "Select...", class: "form-control" %>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4 select">
+						<div class="form-group">
+							<label>Ratings</label>
+							<%= f.select :ratings, [["1",1], ["2",2], ["3",3], ["4+",4]], prompt: "Please select", class: "form-control" %>
+						</div>
+					</div>
+
+				<div class="row">
+					<div class="form-group">
+						<label>Location Name</label>
+						<%= f.text_field :location_name, placeholder: "Name of Your Facility", class: "form-control" %>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group">
+						<label>Description</label>
+						<%= f.text_area :description, rows: 5, placeholder: "Tell us about your facility", class: "form-control" %>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group">
+						<label>Street</label>
+						<%= f.text_field :street, placeholder: "What is your street address?", class: "form-control" %>
+					</div>
+				</div>
+
+				<!-- <div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<%= f.check_box :# %> Futsal
+						</div>
+						<div class="form-group">
+							<%= f.check_box :# %> Badminton
+						</div>
+						<div class="form-group">
+							<%= f.check_box :# %> Basketball
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="form-group">
+							<%= f.check_box :# %> Table Tennis
+						</div>
+						<div class="form-group">
+							<%= f.check_box :# %> Swimming Pool
+						</div>
+					</div>	
+				</div>	 -->
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>Price per hour</label>
+							<div class="input-group">
+								<div class="input-group-addon">$</div>
+								<%= f.text_field :price_per_hour, placeholder: "eg. $100", class: "form-control" %>
+							</div>	
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">							
+							<span class="btn btn-default btn-file">
+							    <i class="fa fa-cloud-upload fa-lg"></i> Upload Photos 
+							    <%= file_field_tag "images[]", type: :file, multiple: true %>
+							</span>
+						</div>		
+					</div>
+				</div>
+
+				<div id="photos"><%= render 'photos/list' %></div>
+
+				<div class="row">
+					<div class="form-group">
+						<%= f.check_box :active %> Active
+					</div>
+				</div>
+
+				<div class="actions">
+					<%= f.submit "Save", class: "btn btn-primary" %>
+				</div>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>
