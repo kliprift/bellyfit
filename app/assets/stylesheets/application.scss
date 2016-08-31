@@ -17,4 +17,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+#home-logo {
+	opacity: 0.2;
+	filter: alpha(opacity=20); /* For IE8 and earlier */
+}
 
+.fullscreen-bg { position: relative; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden; height: 600px; z-index: 0; }
