@@ -60,7 +60,11 @@
   <% else %>
 
   	<%= "You have #{facilities.count} facitilites listed on our sites." %>
-    <%= link_to "Your Facilities", user_facilities_path(current_user) %><br>
+    <%= link_to "Your Facilities", user_facilities_path(current_user) %>
+    <%= link_to "View Available Facilities" %>
+
+
+    <br>
   	<%= "You have #{bookings.count} bookings booked through our sites. ***To put in make a booking buttom***" %><br>
 
   <% end %>

@@ -16,8 +16,11 @@
 							<%= image_tag (facility.avatars[0].thumb.url) if facility.avatars[0] != nil %>
 						</div>		
 						<div class="col-md-3 right">
-							<%= link_to "Update", edit_user_facility_path(current_user.id, facility.id), class: "btn btn-primary" %>
+					
 							<%= link_to "View", user_facility_path(current_user.id, facility.id), class: "btn btn-primary" %>
+
+								<%= link_to "Book", class: "btn btn-success" %>
+
 						</div>		
 					</div>
 					<hr>

@@ -1,5 +1,10 @@
 class PhotosController < ApplicationController
 
+	def edit
+		@photos = @facility.photos
+	end
+
+
 	def destroy
 		@photo = Photo.find(params[:id])
 		facility = @photo.facility

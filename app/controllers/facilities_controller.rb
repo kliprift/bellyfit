@@ -1,5 +1,5 @@
 class FacilitiesController < ApplicationController
-  before_action :set_facility, only: [:show, :edit, :update]
+  before_action :set_facility, only: [:show, :edit, :update, :destroy]
   
   def index
     @facilities = current_user.facilities
@@ -25,22 +25,25 @@ class FacilitiesController < ApplicationController
 
   def edit
     if current_user.id == @facility.user.id
-      @photos = @facility.photos
+      @avatars = @facility.avatars
     else
       redirect_to root_path, notice: "You don't have access permission."
     end
   end
 
   def update
-    if @facility.update(room_params)
+   
+    if @facility.update(facility_params)
+      redirect_to user_facility_path(current_user.id, @facility.id), notice: "Facility is successfully updated."
+    else
+      render :edit
+    end
+  end
 
-      if params[:images]
-        params[:images].each do |image|
-          @facility.photo.create(image: image)
-        end
-      end
+  def destroy
 
-      redirect_to edit_facility_path(@facility), notice: "Facility is successfully updated."
+    if @facility.destroy
+      redirect_to user_facilities_path(current_user.id), notice: "Facility is deleted."
     else
       render :edit
     end
