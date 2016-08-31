@@ -1,20 +1,26 @@
-<div id="header">
-  <%= link_to t(".home"), root_path %>
-  <% if signed_in? -%>
-    <%= link_to "#{current_user.email}", user_path(current_user.id) %>
-    <%= link_to t(".sign_out"), sign_out_path, method: :delete %>
-    <%= link_to t(".create_facility"), new_user_facility_path(current_user.id) %>
 
-  <% else -%>
-    <%= link_to t(".sign_up"), sign_up_path %>
-    <%= link_to t(".sign_in"), sign_in_path %>
-    <%= link_to "Connect With Facebook", "/auth/facebook" %>
+
+
+<ul class="nav nav-pills" >
+  
+  <% if signed_in? %>
+
+    <li role="presentation" class="active"><%= link_to t(".create_facility"), new_user_facility_path(current_user.id) %></li>
+    <li role="presentation" class="active"><%= link_to "#{current_user.email}", user_path(current_user.id) %></li>
+    <li role="presentation" class="active"><%= link_to t(".sign_out"), sign_out_path, method: :delete %></li>
+
+  <% else %>
+    <li id="home-logo"><%= link_to image_tag("https://at-cdn-s01.audiotool.com/2016/01/31/documents/HHGGOaRUIvTJqddimcNSweq07weC/0/cover64x64-48911f78be2c4e01af5eaf7ea1f58564.jpg"), root_path%></li>
+    <li role="presentation" class="active"><%= link_to t(".sign_up"), sign_up_path %></li>
+    <li role="presentation" class="active"><%= link_to t(".sign_in"), sign_in_path %></li>
+    <li role="presentation" class="active"><%= link_to "Connect With Facebook", "/auth/facebook" %></li>
     
-  <% end -%>
-</div>
+  <% end %>
+</ul>
 
 <div id="flash">
-  <% flash.each do |key, value| -%>
+  <% flash.each do |key, value| %>
     <div id="flash_<%= key %>"><%=h value %></div>
   <% end %>
 </div>
+

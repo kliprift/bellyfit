@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+#home-logo {
+	opacity: 0.2;
+	filter: alpha(opacity=20); /* For IE8 and earlier */
+}
