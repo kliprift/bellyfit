@@ -12,11 +12,13 @@ Rails.application.routes.draw do
  root 'welcome#index'
 
 
- resources :users do
-  resources :facilities do
-    resources :bookings, only: [:new, :show, :create, :edit]
-  end
+resources :users do
+  resources :facilities 
 end
+
+ resources :facilities do
+    resources :bookings, only: [:new, :show, :create]
+  end
 
 
  resources :users, controller: "users", only: :show
