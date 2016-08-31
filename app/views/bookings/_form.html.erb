@@ -1,12 +1,17 @@
-<%= form_for(@booking, url: "/facilities/#{@facility.id}/bookings", html: {method: "post"}) do |form| %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Make A Booking
+  </div>
+  <div class="panel-body">
+    <div class="container">
+    <%= form_for(@booking, url: "/facilities/#{@facility.id}/bookings", html: {method: "post"}) do |form| %>
 
-<div class="container">
+    <div class="container">
     <div class='col-md-5'>
         <div class="form-group">
-        <%= label_tag :start_date, 'DateTime' %>
+         <%= label_tag :start_date, 'Start Date & Time' %>
             <div class='input-group date' id='datetimepicker6'>
             <%= text_field_tag :start_date, nil, class: 'form-control', data: { date_format: 'YYYY/MM/DD' } %>
-                <input type='text' class="form-control" />
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -16,11 +21,10 @@
 
     <div class='col-md-5'>
         <div class="form-group">
-        <%= label_tag :end_date, 'DateTime' %>
+        <%= label_tag :end_date, 'End Date & Time' %>
             <div class='input-group date' id='datetimepicker7'>
             <%= text_field_tag :end_date, nil, class: 'form-control', data: { date_format: 'YYYY/MM/DD' } %>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
+              <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
@@ -41,34 +45,34 @@
         });
     });
 </script>
-	
-<div class="row">
-	<div class="col-md-6">
-		<%= form.label :title, 'Title' %>
-		<%= form.text_field :title, placeholder: 'Title' %>
-	</div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <%= form.label :title, 'Title' %>
+            <%= form.text_field :title, placeholder: 'Title' %>
+          </div>
+        </div> 
+        <div class="row">
+          <div class="col-md-6">
+            <%= form.label :notes, 'Notes' %>
+            <%= form.text_area :notes, placeholder: 'Notes' %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <%= form.label :private, 'Tick for Private Event' %>
+            <%= form.check_box :private %>
+          </div>
+        </div>
+
+          <div class="row">
+	         <div class="col-md-6">
+		        <%= form.submit "Book" %>
+	         </div>
+          </div>
+
+    <% end %>
+    </div>
+  </div>
 </div>
-
-<div class="row">
-	<div class="col-md-6">
-		<%= form.label :notes, 'Notes' %>
-		<%= form.text_field :notes, placeholder: 'Notes' %>
-	</div>
-</div>
-
-
-<div class="row">
-	<div class="col-md-6">
-		<%= form.label :private, 'Tick for Private Event' %>
-		<%= form.check_box :private %>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-md-6">
-		<%= form.submit "Book" %>
-	</div>
-</div>
-
-<% end %>
-

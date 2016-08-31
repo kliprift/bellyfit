@@ -1,35 +1,40 @@
 <div id="clearance" class="sign-up">
-  <h2><%= t(".update_user") %></h2>
+ <h2><%= t(".update_user") %></h2>
 
-	<%= form_for(@user) do |form| %>
-		<div class="text-field">
-		  <%= form.label :name %>
-		  <%= form.text_field :name %>
-		</div>
+    <%= form_for(@user) do |form| %>
+        <div class="text-field">
+          <%= form.label :name %>
+          <%= form.text_field :name %>
+        </div>
 
-		<div class="text-field">
-		  <%= form.label :gender %>
-		  <%= form.text_field :gender %>
-		</div>
+        <div class="form-group">
+            <label>Gender</label>
+          <%= form.select :gender, [["Male", "Male"], ["Female", "Female"]], prompt: "Please select", class: "form-control" %>
+        </div>
 
-		<div class="text-field">
-		  <%= form.label :description %>
-		  <%= form.text_field :description %>
-		</div>
+        <div class="form-group">
+            <label>Description</label>
+            <%= form.text_area :description, rows: 5, placeholder: "Tell us more about yourself eg. sport.", class: "form-control" %>
+        </div>
 
-		<div class="text-field">
-		  <%= form.label :contact_detail %>
-		  <%= form.text_field :contact_detail %>
-		</div>
+        <div class="text-field">
+          <%= form.label :contact_detail %>
+          <%= form.text_field :contact_detail %>
+        </div>
 
-		<div class="text-field">
-		  <%= form.label :location_description %>
-		  <%= form.text_field :location_description %>
-		</div>
+        <div class="form-group">
+          <label>City</label>
+            <%= form.select :location_description, [["Petaling Jaya","Petaling Jaya"], ["KL","KL"], ["Klang","Klang"]],prompt: "Please select", class: "form-control" %>
+      </div>    
 
-		<div class="submit-field">
-		  <%= form.submit %>
-		</div>
-	<% end %>
+        <div class="btn btn-default btn-file">
+            <%= form.file_field :avatars, multiple: true %>
+        </div>
+        
+        <div class="submit-field">
+          <%= form.submit "Submit", class: "btn btn-primary"  %>
+        </div>
+        
+    <% end %>
 
 </div>

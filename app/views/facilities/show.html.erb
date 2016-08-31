@@ -1,74 +1,83 @@
 <div class="panel panel-default">
-	<div class="panel-body">
+    <div class="panel-body">
 
-		<br>
+        <br>
 
-		<!-- Main Info -->
-		<div class="row">
-			<div class="col-md-8">
-				<div class="row">
-					<div class="col-md-3 text-center">
-						<%= @facility.user.name %>
-					</div>
+        <!-- Main Info -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-3">
+                        <%= @facility.user.name %>
+                    </div>
 
-					<div class="col-md-9">
-						<h4><%= @facility.location_name %></h4>
-					
+                    <div class="col-md-9">
+                        <h4><%= @facility.location_name %></h4>
+                    
 
-						<div class="row text-center row-space-1">
-							<div class="col-sm-3">
-								<i class="fa fa-home fa-2x"></i>
-							</div>
-							<div class="col-sm-3">
-								<i class="fa fa-users fa-2x"></i>
-							</div>
-							<div class="col-sm-3">
-								<i class="fa fa-bed fa-2x"></i>
-							</div>
-							<div class="col-sm-3">
-								<i class="fa fa-ship fa-2x"></i>
-							</div>
-						</div>
+                        <div class="row text-center">
+                            <div class="col-sm-3">
+                                <i class="fa fa-home fa-2x"></i>
+                            </div>
+                            <div class="col-sm-3">
+                                <i class="fa fa-users fa-2x"></i>
+                            </div>
+                            <div class="col-sm-3">
+                                <i class="fa fa-bed fa-2x"></i>
+                            </div>
+                            <div class="col-sm-3">
+                                <i class="fa fa-ship fa-2x"></i>
+                            </div>
+                        </div>
 
-						<div class="row text-center">
-							<div class="col-sm-3">
-								<%= @facility.location_name %>
-							</div>
-			
-							<div class="col-sm-3">
-								<%= @facility.price_per_hour %>
-							</div>
+                        <div class="row text-left">
+                            <div class="col-sm-3">
 
-							<div class="col-sm-3">
-								<%= @facility.street %>
-							</div>
+                                <%= @facility.location_name %>
+                            </div>
+            
+                            <div class="col-sm-3">
+                                <h4>Price per hour</h4>
+                                <%= @facility.price_per_hour %>
+                            </div>
 
-							<div class="col-sm-3">
-								<%= @facility.city %>
-							</div>
+                            <div class="col-sm-3">
+                                <h4>Street</h4>
+                                <%= @facility.street %>
+                            </div>
 
-							<div class="col-sm-3">
-								<%= @facility.state %>
-							</div>
+                            <div class="col-sm-3">
+                                <h4>City</h4>
+                                <%= @facility.city %>
+                            </div><br>
 
-							<div class="col-sm-3">
-								<%= @facility.sport %>
-							</div>
+                            <div class="col-sm-3">
+                                <h4>Sport</h4>
+                                <%= @facility.sport %>
+                            </div>
 
-							<div class="col-sm-3">
-								<%= @facility.description %>
-							</div>
+                            <div class="col-sm-3">
+                                <h4>Description</h4>
+                                <%= @facility.description %>
+                            </div>
 
-							<div class="col-sm-3">
-								<%= @facility.ratings %>
-							</div>
-						</div>
-					</div>
-					
-						<%= image_tag (@facility.avatars[0].thumb.url) if @facility.avatars[0] != nil %>
-					
-				</div>
-			</div>
-		</div>	
-	</div>
+                            <div class="col-sm-3">
+                                <h4>Ratings</h4>
+                                <%= @facility.ratings %>
+                            </div><br><br>
+
+
+                            <%= image_tag (@facility.avatars[0].thumb.url) if @facility.avatars[0] != nil %><br><br>
+
+                            <%= link_to "Back to Listings", user_facilities_path(current_user.id), class: "btn btn-primary" %>
+
+                                    <%= link_to "Edit", edit_user_facility_path, class: "btn btn-primary" %>
+
+                            <%= link_to "Delete", { controller: 'facilities', action: 'destroy' }, data: {confirm: 'Are you sure?'}, method: :delete, class: "btn btn-danger" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
 </div>

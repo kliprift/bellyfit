@@ -22,10 +22,9 @@ class BookingsController < ApplicationController
     @booking.start_date = a
     @booking.end_date = b
     
-    if @booking.save
-
+    if @booking.save 
      
-      redirect_to facility_booking_path(@booking, @facility.id)
+      redirect_to facility_booking_path(@booking, @facility.id), notice: "Booking has been successfully created"
     else
       render 'new'
     end

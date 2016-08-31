@@ -19,7 +19,7 @@
                     
                             <%= link_to "View", user_facility_path(current_user.id, facility.id), class: "btn btn-primary" %>
 
-                                <%= link_to "Book", new_facility_booking_path(facility.id), class: "btn btn-success" %>
+                            <%= link_to "Book", new_facility_booking_path(current_user.id, @facility), class: "btn btn-primary" %>
 
                         </div>        
                     </div>
