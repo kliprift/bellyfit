@@ -19,7 +19,9 @@ resources :users do
 end
 
  resources :facilities do
-    resources :bookings, only: [:new, :show, :create]
+    resources :bookings, only: [:new, :show, :create] do
+      resources :payments, only: [:new, :create]
+    end
   end
 
 

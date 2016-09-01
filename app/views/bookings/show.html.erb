@@ -28,6 +28,13 @@
 					</div>	
 				</div>
 						<hr>
+					<strong>Payment Status:</strong>
+      		<% if @booking.payments.where(status: :authorized).count == 0 %>
+      			<span class="btn btn-danger"> NOT PAID </span>
+       			<%= link_to 'Pay Now' , new_facility_booking_payment_path(@booking.facility, @booking) + "?id=" + @booking.id.to_s, class: "btn btn-warning"  %>
+      		<% else %>
+      			<span class="btn btn-success">PAID</span>
+      		<% end %>
 
 			</div>
 		</div>
