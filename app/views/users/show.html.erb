@@ -48,24 +48,25 @@
     <%= "Location: #{current_user.location_description}" if current_user.location_description != nil %><br>
     <%= link_to "update profile", edit_user_path(current_user.id) %><br>
   
+
+  
     <% bookings = current_user.bookings %>
     <% facilities = current_user.facilities %>
+
     <% if bookings.count != 0 %>
-
-      <% "You have #{bookings.count} bookings booked through our sites. ***To put in view buttom***" %><br>
-
-      <% if facilities.count != 0 %>
-
-        <% "You have #{facilities.count} facitilites listed on our sites. ***To put in view buttom***" %><br>
+      <%= "You have #{bookings.count} bookings booked through our sites." %><br>
+      <% bookings.each_with_index do |b, index| %>
+        <%= "#{index+1}.. #{b.title}" %>
+        <%= link_to "View", facility_booking_path(b.facility.id, b.id), class: "btn btn-primary" %><br>
       <% end %>
-      
-    <% else %>
+    <% end %>
 
-      <%= "You have #{facilities.count} facitilites listed on our sites. ***To put in become a host buttom***" %><br>
-      <%= "You have #{bookings.count} bookings booked through our sites. ***To put in make a booking buttom***" %><br>
-
+    <% if facilities.count != 0 %>
+      <%= "You have #{facilities.count} facitilites listed on our sites." %><br>
+      <% facilities.each_with_index do |f, index| %>
+        <%= "#{index+1}.. #{f.location_name}" %>
+        <%= link_to "View", user_facility_path(current_user.id, f.id), class: "btn btn-primary" %><br>
+      <% end %>
     <% end %>
   <% end %>
-
-
 </div>

@@ -14,4 +14,5 @@ class Facility < ActiveRecord::Base
 	# validates :total, presence: true
 	validates :sport, presence: true
 	mount_uploaders :avatars, AvatarUploader
+	searchkick match: :word_start, searchable: [:street, :city, :state, :start_time, :end_time, :description, :location_name, :ratings, :price_per_hour, :sport]
 end

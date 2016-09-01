@@ -7,6 +7,7 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @booking = Booking.find(params[:id])
   end
 
   def new
@@ -15,13 +16,19 @@ class BookingsController < ApplicationController
 
 
   def create
+    byebug
     a = start_date
     b = end_date
+    @price = @facility.price_per_hour
+    @hours = @booking.end_date - @booking.start_date 
+    @total = @hours * @price
+
     @booking = @facility.bookings.new(booking_params)
+    @booking.total = @total
     @booking.user_id = current_user.id
     @booking.start_date = a
     @booking.end_date = b
-    
+ 
     if @booking.save 
      
       redirect_to facility_booking_path(@booking, @facility.id), notice: "Booking has been successfully created"

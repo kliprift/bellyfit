@@ -8,12 +8,19 @@
     <li role="presentation" class="active"><%= link_to t(".create_facility"), new_user_facility_path(current_user.id) %></li>
     <li role="presentation" class="active"><%= link_to "#{current_user.email}", user_path(current_user.id) %></li>
     <li role="presentation" class="active"><%= link_to t(".sign_out"), sign_out_path, method: :delete %></li>
+    <li role="presentation" class="active">
+      <%= form_for Facility.new, method: :get, url: search_path, class: "navbar-form navbar-left" do |f| %>
+        <%= text_field_tag :term, params[:term], placeholder:"sports google" %>
+        <%= f.submit 'search', class: 'btn btn-primary' %>
+      <% end %>
+    </li>
 
   <% else %>
     
     <li role="presentation" class="active"><%= link_to t(".sign_up"), sign_up_path %></li>
     <li role="presentation" class="active"><%= link_to t(".sign_in"), sign_in_path %></li>
     <li role="presentation" class="active"><%= link_to "Connect With Facebook", "/auth/facebook" %></li>
+
     
   <% end %>
 </ul>

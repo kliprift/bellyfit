@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
  root 'welcome#index'
 
+  get '/search', to: 'facilities#search'
+
 
 resources :users do
   resources :facilities 

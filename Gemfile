@@ -36,6 +36,7 @@ gem 'mini_magick'
 
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails', '4.0.0'
+gem 'searchkick'
 
 
 
