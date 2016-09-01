@@ -1,4 +1,12 @@
 <div id="clearance" class="sign-up">
+  <style>
+  body {
+     background-image: url('http://www.tmwallpaper.com/mod/creative/1600x900/wide-wallpaper-1600x900-063.jpg');
+  }
+
+  </style>
+
+
   <h2> Profile Page </h2>
 
   <% if current_user.name.nil? %>
@@ -51,11 +59,11 @@
  	<% facilities = current_user.facilities %>
   <% if bookings.count != 0 %>
 
-  	<% "You have #{bookings.count} bookings booked through our sites. ***To put in view buttom***" %><br>
+  	<% "You have #{bookings.count} bookings booked through our sites. ***To put in view button***" %><br>
 
 		<% if facilities.count != 0 %>
 
-	  	<% "You have #{facilities.count} facilities listed on our sites. ***To put in view buttom***" %><br>
+	  	<% "You have #{facilities.count} facilities listed on our sites. ***To put in view button***" %><br>
 	  <% end %>
 	  
   <% else %>
@@ -66,7 +74,7 @@
 
 
     <br>
-  	<%= "You have #{bookings.count} bookings booked through our sites. ***To put in make a booking buttom***" %><br>
+  	<%= "You have #{bookings.count} bookings booked through our sites. ***To put in make a booking button***" %><br>
 
   <% end %>
 </div>

@@ -18,8 +18,43 @@
 @import "bootstrap";
 
 #home-logo {
-	opacity: 0.2;
-	filter: alpha(opacity=20); /* For IE8 and earlier */
+	filter: alpha(opacity=0.1); /* For IE8 and earlier */
+	background-color: transparent;
+	background-image: url("/assets/BellyFit.png");
+	height: 50px;
+	width: 50px;
+	background-size:cover;
 }
 
-.fullscreen-bg { position: relative; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden; height: 600px; z-index: 0; }
+.fullscreen-bg { 
+position: relative; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden; height: 1000px; z-index: 0; 
+
+}
+
+#overlay {
+  background-color: rgba(0,0,0,0);
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:11;
+  height:100%;
+}
+
+
+.nav li{
+	height: 100%;
+}
+
+.content {
+	padding-top:80px;
+}
+
+.fullscreen-bg__video{
+	margin-top: -80px;
+}
+
+.no-padding{
+	padding: 0px !important;
+}
