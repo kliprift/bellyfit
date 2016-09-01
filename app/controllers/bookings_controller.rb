@@ -2,9 +2,6 @@ class BookingsController < ApplicationController
   before_action :require_login
   before_action :find_facility, except: [:show]
 
-  def index
-    @booking = Booking.all
-  end
 
   def show
     @booking = Booking.find(params[:id])

@@ -2,49 +2,40 @@
   <div class="panel-heading">
     Make A Booking
   </div>
+
   <div class="panel-body">
     <div class="container">
-    <%= form_for(@booking, url: "/facilities/#{@facility.id}/bookings", html: {method: "post"}) do |form| %>
+      
+     <%= form_for(@booking, :url=> { :action => "create"}) do |form| %>
 
-    <div class="container">
-    <div class='col-md-5'>
-        <div class="form-group">
-         <%= label_tag :start_date, 'Start Date & Time' %>
-            <div class='input-group date' id='datetimepicker6'>
-            <%= text_field_tag :start_date, nil, class: 'form-control', data: { date_format: 'YYYY/MM/DD' } %>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
+        <div class="container">
+            <div class='col-md-5'>
+                <div class="form-group">
+                 <%= label_tag :start_date, 'Start Date & Time' %>
+                    <div class='input-group date' id='datetimepicker6'>
+                    <%= text_field_tag :start_date, nil, class: 'form-control', data: { date_format: 'YYYY/MM/DD' } %>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-md-5'>
+                <div class="form-group">
+                <%= label_tag :end_date, 'End Date & Time' %>
+                    <div class='input-group date' id='datetimepicker7'>
+                    <%= text_field_tag :end_date, nil, class: 'form-control', data: { date_format: 'YYYY/MM/DD' } %>
+                      <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class='col-md-5'>
-        <div class="form-group">
-        <%= label_tag :end_date, 'End Date & Time' %>
-            <div class='input-group date' id='datetimepicker7'>
-            <%= text_field_tag :end_date, nil, class: 'form-control', data: { date_format: 'YYYY/MM/DD' } %>
-              <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
-<script type="text/javascript">
-    $(function () {
-        $('#datetimepicker6').datetimepicker();
-        $('#datetimepicker7').datetimepicker({
-            useCurrent: true //Important! See issue #1075
-        });
-        $("#datetimepicker6").on("dp.change", function (e) {
-            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-        });
-        $("#datetimepicker7").on("dp.change", function (e) {
-            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-        });
-    });
-</script>
+
+
 
         <div class="row">
           <div class="col-md-6">
@@ -52,6 +43,7 @@
             <%= form.text_field :title, placeholder: 'Title' %>
           </div>
         </div> 
+
         <div class="row">
           <div class="col-md-6">
             <%= form.label :notes, 'Notes' %>
@@ -66,13 +58,32 @@
           </div>
         </div>
 
-          <div class="row">
-	         <div class="col-md-6">
-		        <%= form.submit "Book" %>
-	         </div>
-          </div>
+        <div class="row">
+         <div class="col-md-6">
+          <%= form.submit "Book" %>
+         </div>
+        </div>
 
-    <% end %>
+      <% end %>
     </div>
   </div>
 </div>
+
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker6').datetimepicker();
+        $('#datetimepicker7').datetimepicker({
+            useCurrent: true //Important! See issue #1075
+        });
+        $("#datetimepicker6").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker7").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+</script>
