@@ -14,5 +14,7 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require toastr
-
-
+//= require bootstrap.min
+//= require moment
+//= require bootstrap-datetimepicker
+//= require_tree .

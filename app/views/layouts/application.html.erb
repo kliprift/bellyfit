@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>BellyFIT</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <head>
 
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <title>BellyFIT</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+       <!-- Latest compiled and minified CSS -->
+       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-	<!-- Latest compiled JavaScript -->
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
- 	<%= csrf_meta_tags %>
+       <!-- jQuery library -->
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-</head>
+       <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
 
-<body>
-	<div class="body">	
+       <!-- Latest compiled JavaScript -->
+       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+       <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+       <%= csrf_meta_tags %>
 
-		<%= render partial: "layouts/navbar" %>
-		<div class="content">
-			<%= yield %>
-		</div>
-	
-	</div>	
-</body>
+
+
+  </head>
+
+  <body>
+      <div class="body">    
+
+          <%= render partial: "layouts/navbar" %>
+          <%= yield %>
+      
+      </div>    
+  </body>
 
 </html>

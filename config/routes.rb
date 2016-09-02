@@ -11,12 +11,21 @@ Rails.application.routes.draw do
 
  root 'welcome#index'
 
+  get '/search', to: 'facilities#search', as: "search"
+  get '/search_bookings', to: 'bookings#search_bookings', as: "search_bookings"
 
- resources :users do
-  resources :facilities do
-    resources :bookings, only: [:new, :show, :create, :edit]
-  end
+
+resources :users do
+  resources :facilities 
 end
+
+resources :bookings, only: [:update]
+
+ resources :facilities do
+    resources :bookings, only: [:index, :new, :show, :create] do
+      resources :payments, only: [:new, :create]
+    end
+  end
 
 
  resources :users, controller: "users", only: :show

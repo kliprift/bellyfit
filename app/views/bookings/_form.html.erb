@@ -1,48 +1,86 @@
-<%= form_for([@facility, @facility.bookings.new]) do |f| %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Make A Booking
+  </div>
 
-<div class="row">
-	<div class="col-md-6">
-		<%= f.label :start_date, 'From' %>
-		<%= f.text_field :start_date, readonly: 'true', placeholder: 'Start Date' %>
-	</div>
+  <div class="panel-body">
+    <div class="container">
+      
+     <%= form_for(@booking, :url=> { :action => "create"}) do |form| %>
+
+        <div class="container">
+            <div class='col-md-5'>
+                <div class="form-group">
+                 <%= label_tag :start_date, 'Start Date & Time' %>
+                    <div class='input-group date' id='datetimepicker6'>
+                    <%= text_field_tag :start_date, nil, class: 'form-control', data: { date_format: 'YYYY/MM/DD' } %>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-md-5'>
+                <div class="form-group">
+                <%= label_tag :end_date, 'End Date & Time' %>
+                    <div class='input-group date' id='datetimepicker7'>
+                    <%= text_field_tag :end_date, nil, class: 'form-control', data: { date_format: 'YYYY/MM/DD' } %>
+                      <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <%= form.label :title, 'Title' %>
+            <%= form.text_field :title, placeholder: 'Title' %>
+          </div>
+        </div> 
+
+        <div class="row">
+          <div class="col-md-6">
+            <%= form.label :notes, 'Notes' %>
+            <%= form.text_area :notes, placeholder: 'Notes' %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <%= form.label :private, 'Tick for Private Event' %>
+            <%= form.check_box :private %>
+          </div>
+        </div>
+
+        <div class="row">
+         <div class="col-md-6">
+          <%= form.submit "Book" %>
+         </div>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<div class="row">
-	<div class="col-md-6">
-		<%= f.label :end_date, 'To' %>
-		<%= f.text_field :end_date, readonly: 'true', placeholder: 'End Date' %>
-	</div>
-</div>
-	
-<div class="row">
-	<div class="col-md-6">
-		<%= f.label :title, 'Title' %>
-		<%= f.text_field :title, readonly: 'true', placeholder: 'Title' %>
-	</div>
-</div>
 
-<div class="row">
-	<div class="col-md-6">
-		<%= f.label :notes, 'Notes' %>
-		<%= f.text_field :notes, readonly: 'true', placeholder: 'Notes' %>
-	</div>
-</div>
 
-	<%= f.hidden_field :facility_id %>
-	<%= f.hidden_field :price_per_hour %>
 
-<div class="row">
-	<div class="col-md-6">
-		<%= f.label :private, 'Tick for Private Event' %>
-		<%= f.check_box :private %>
-	</div>
-</div>
 
-<div class="row">
-	<div class="col-md-6">
-		<%= f.submit "Book" %>
-	</div>
-</div>
-
-<% end %>
-
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker6').datetimepicker();
+        $('#datetimepicker7').datetimepicker({
+            useCurrent: true //Important! See issue #1075
+        });
+        $("#datetimepicker6").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker7").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+</script>

@@ -1,2 +1,33 @@
-<h1>Bookings#index</h1>
-<p>Find me in app/views/bookings/index.html.erb</p>
+<div class="col-md-9">
+    <div class="panel panel-default">
+        <div class="panel-heading"> Bookings </div>
+            <div class="panel-body">
+            <%= @bookings.each do |booking| %>
+                <div class="row">
+                    <div class="col-md-10">
+                        <%= booking.title %>
+                    </div>
+                <div class="row">    
+                    <div class="col-md-10">
+                        <%= booking.notes %>
+                    </div>
+                </div>
+
+                <div class="row">    
+                    <div class="col-md-10">
+                        <%= booking.start_date.strftime('%v') %>
+                    </div>
+
+                    <div class="col-md-10">
+                        <%= booking.end_date.strftime('%v') %>
+                    </div>
+
+
+                    <%= link_to "Join Booking", booking_path(booking), method: :put, class: "btn btn-danger" %>
+
+                </div>
+            <% end %>    
+                </div>
+            </div>
+        </div>
+    </div>

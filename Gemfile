@@ -32,8 +32,14 @@ gem 'figaro'
 gem 'toastr-rails'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
+
 gem 'mini_magick'
 
+gem 'momentjs-rails'
+gem 'bootstrap3-datetimepicker-rails', '4.0.0'
+gem 'searchkick'
+gem 'braintree'
+gem 'font-awesome-rails'
 
 
 # Use ActiveModel has_secure_password

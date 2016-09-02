@@ -2,7 +2,16 @@ class FacilitiesController < ApplicationController
   before_action :set_facility, only: [:show, :edit, :update, :destroy]
   
   def index
-    @facilities = current_user.facilities
+    @facilities = Facility.all
+  end
+
+  def search
+    @facilities = Facility.search(params[:term], fields: [:street, :city, :state, :start_time, :end_time, :description, :location_name, :ratings, :price_per_hour, :sport], mispellings: {below: 3})
+    if @facilities.blank?
+      redirect_to user_facilities_path, flash:{danger: "no successful search result"}
+    else
+      render :index
+    end
   end
 
   def show
