@@ -1,28 +1,28 @@
-<div class="col-md-9">
+<div class="col-md-9" style="margin-left:200px; margin-top:50px;">
     <div class="panel panel-default">
         <div class="panel-heading"> Bookings </div>
             <div class="panel-body">
-            <%= @bookings.each do |booking| %>
+            <% @bookings.each do |booking| %>
                 <div class="row">
-                    <div class="col-md-10">
-                        <%= booking.title %>
+                    <div class="col-md-9 col-md-offset-1">
+                        <h1><strong>Location Name: <%= booking.title %></strong></h1>
                     </div>
                 <div class="row">    
-                    <div class="col-md-10">
-                        <%= booking.notes %>
+                    <div class="col-md-9 col-md-offset-1">
+                        <h4><strong>Notes: <%= booking.notes %></strong></h4>
                     </div>
                 </div>
 
                 <div class="row">    
-                    <div class="col-md-10">
-                        <%= booking.start_date.strftime('%v') %>
+                    <div class="col-md-9 col-md-offset-1">
+                        <h4>Start Date: <%= booking.start_date.strftime('%v') %></h4>
                     </div>
 
-                    <div class="col-md-10">
-                        <%= booking.end_date.strftime('%v') %>
+                    <div class="col-md-9 col-md-offset-1">
+                        <h4>End Date: <%= booking.end_date.strftime('%v') %></h4>
                     </div>
 
-
+                    <%= link_to "View", facility_booking_path(booking.facility.id, booking.id), class: "btn btn-primary" %>
                     <%= link_to "Join Booking", booking_path(booking), method: :put, class: "btn btn-danger" %>
 
                 </div>

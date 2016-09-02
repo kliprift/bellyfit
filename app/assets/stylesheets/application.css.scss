@@ -45,7 +45,10 @@
 
 .content {
 	padding-top:80px;
+	margin-left: 0px !important;
+	padding-left: 0px !important;
 }
+
 
 .fullscreen-bg__video{
 	margin-top: -80px;
@@ -57,8 +60,9 @@
 
 
 .fullscreen-bg { 
-position: relative; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden; height: 800px; z-index: 0; 
+	position: relative; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden; height: 800px; z-index: 0; 
 }
+
 
 
 

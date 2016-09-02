@@ -1,4 +1,4 @@
-<nav id="header" class="navbar navbar-fixed-top">
+<nav id="header" class="navbar navbar-fixed-top" style="margin-left:100px; margin-top:20px;">
   <div id="header-container" class="container navbar-container">
     <ul class="nav nav-pills" >
       <li>
@@ -9,27 +9,27 @@
       <% if signed_in? %>
        <li role="presentation" class="active"> 
         <%= form_for Booking.new, method: :get, url: search_bookings_path, class: "navbar-form navbar-left" do |f| %>
-          <%= text_field_tag :term, params[:term], placeholder:"search for friendly match" %>
+          <%= text_field_tag :term, params[:term], placeholder:"search for friendly match", style:"width:230px; margin-top:5px;" %>
           <%= f.submit 'search', class: 'btn btn-primary' %>
         <% end %>
       </li>
 
-       <li role="presentation" class="active"><%= link_to t(".create_facility"), new_user_facility_path(current_user.id) %></li>
-       <li role="presentation" class="active"><%= link_to "#{current_user.email}", user_path(current_user.id) %></li>
-       <li role="presentation" class="active"><%= link_to t(".sign_out"), sign_out_path, method: :delete %></li>
+       <li role="presentation"><%= link_to t(".create_facility"), new_user_facility_path(current_user.id) %></li>
+       <li role="presentation"><%= link_to "#{current_user.email}", user_path(current_user.id) %></li>
+       <li role="presentation"><%= link_to t(".sign_out"), sign_out_path, method: :delete %></li>
 
-       <li role="presentation" class="active">
+       <li role="presentation">
          <%= form_for Facility.new, method: :get, url: search_path, class: "navbar-form navbar-left" do |f| %>
-           <%= text_field_tag :term, params[:term], placeholder:"search for facilities" %>
+           <%= text_field_tag :term, params[:term], placeholder:"search for facilities", style:"width:230px; margin-top:5px;" %>
            <%= f.submit 'search', class: 'btn btn-primary' %>
          <% end %>
        </li>
 
      <% else %>
        
-       <li role="presentation" class="active"><%= link_to t(".sign_up"), sign_up_path %></li>
-       <li role="presentation" class="active"><%= link_to t(".sign_in"), sign_in_path %></li>
-       <li role="presentation" class="active"><%= link_to "Connect With Facebook", "/auth/facebook" %></li>
+       <li role="presentation"><%= link_to t(".sign_up"), sign_up_path %></li>
+       <li role="presentation"><%= link_to t(".sign_in"), sign_in_path %></li>
+       <li role="presentation"><%= link_to "Connect With Facebook", "/auth/facebook" %></li>
      <% end %>
     </ul>
   </div><!-- /.container -->

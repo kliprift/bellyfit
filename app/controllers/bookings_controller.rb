@@ -17,11 +17,11 @@ class BookingsController < ApplicationController
   end
 
   def update
-    byebug
+    
     @booking = Booking.find(params[:id])
     @booking.participant_id << current_user.id
     @booking.save
-    redirect_to facility_booking_path(@booking.facility.id, @booking.id)
+    redirect_to facility_booking_path(@booking.facility.id, @booking.id), notice: "You've joined this booking."
   end
   
   def show

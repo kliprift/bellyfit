@@ -9,7 +9,7 @@ class PaymentsController < ApplicationController
   end
 
   def create
-  	byebug
+  	
     amount = params[:payment][:total_price]
     nonce = params[:payment_method_nonce]
 
